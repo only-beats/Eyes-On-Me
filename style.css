@@ -44,7 +44,13 @@ body {
 }
 
 .eye .white {
-  fill: #fef6eb
+  fill: #fff
+}
+
+.rim {
+  fill: #fff;
+  stroke: #1a110d;
+  stroke-width: 4.5
 }
 
 .pupil circle {
@@ -52,7 +58,7 @@ body {
 }
 
 .pupil .shine {
-  fill: #fef6eb
+  fill: #fff
 }
 
 .hint {
