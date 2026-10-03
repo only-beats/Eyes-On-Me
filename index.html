@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Living Sticker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="stage">
+    <svg id="sticker" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-label="Hugging sticker with moving eyes">
+      <defs>
+        <clipPath id="c1"><ellipse cx="173" cy="192" rx="15" ry="10.5"/></clipPath>
+        <clipPath id="c2"><ellipse cx="235" cy="171" rx="13" ry="11"/></clipPath>
+        <clipPath id="c3"><ellipse cx="288" cy="150" rx="15" ry="8.5"/></clipPath>
+        <clipPath id="c4"><ellipse cx="357" cy="146" rx="16" ry="9"/></clipPath>
+      </defs>
+      <image href="sticker.png" width="512" height="512"/>
 
+      <!-- girl left eye -->
+      <g class="eye" clip-path="url(#c1)" data-cx="172.5" data-cy="192.5" data-mx="6" data-my="2.5">
+        <ellipse class="white" cx="173" cy="192" rx="17" ry="12"/>
+        <g class="pupil"><circle r="8.5"/><circle class="shine" cx="0.5" cy="-3" r="2.3"/></g>
+      </g>
+      <!-- girl right eye -->
+      <g class="eye" clip-path="url(#c2)" data-cx="230" data-cy="172.5" data-mx="5" data-my="2.5">
+        <ellipse class="white" cx="235" cy="171" rx="15" ry="13"/>
+        <g class="pupil"><circle r="8.5"/><circle class="shine" cx="0.5" cy="-3" r="2.3"/></g>
+      </g>
+      <!-- boy left eye -->
+      <g class="eye" clip-path="url(#c3)" data-cx="290" data-cy="152" data-mx="6" data-my="2" >
+        <ellipse class="white" cx="288" cy="150" rx="17" ry="10.5"/>
+        <g class="pupil"><circle r="8.2"/><circle class="shine" cx="0.5" cy="-3" r="2.2"/></g>
+      </g>
+      <!-- boy right eye -->
+      <g class="eye" clip-path="url(#c4)" data-cx="355" data-cy="146" data-mx="7" data-my="2">
+        <ellipse class="white" cx="357" cy="146" rx="18" ry="11"/>
+        <g class="pupil"><circle r="8.2"/><circle class="shine" cx="0.5" cy="-3" r="2.2"/></g>
+      </g>
+    </svg>
+    <p class="hint" id="hint">Move your mouse 👀</p>
+  </main>
+
+  <div class="joy-wrap" id="joyWrap">
+    <div class="joy-base" id="joyBase"><div class="joy-knob" id="joyKnob"></div></div>
+    <span class="joy-label">Drag the ball to move the eyes</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
