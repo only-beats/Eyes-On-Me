@@ -7,6 +7,7 @@
     white: g.querySelector('.white'),
     cx: +g.dataset.cx, cy: +g.dataset.cy,
     mx: +g.dataset.mx, my: +g.dataset.my,
+    fixed: g.dataset.look ? g.dataset.look.split(',').map(Number) : null,
     x: 0, y: 0
   }));
 
@@ -55,7 +56,9 @@
   function frame() {
     for (const eye of eyes) {
       let tx = 0, ty = 0;
-      if (mode === 'joy') {
+      if (eye.fixed) {
+        tx = eye.fixed[0]; ty = eye.fixed[1];
+      } else if (mode === 'joy') {
         tx = joy.x; ty = joy.y;
       } else if (mouse.x !== null) {
         const r = eye.white.getBoundingClientRect();
@@ -64,6 +67,9 @@
         tx = clamp(dx / (innerWidth * 0.3));
         ty = clamp(dy / (innerHeight * 0.3));
       }
+      // keep the pupil a perfect circle inside the eye: limit the move to an oval
+      const len = Math.hypot(tx, ty);
+      if (len > 1) { tx /= len; ty /= len; }
       eye.x += (tx - eye.x) * 0.16;   // smooth, natural easing
       eye.y += (ty - eye.y) * 0.16;
       const px = eye.cx + eye.x * eye.mx;
