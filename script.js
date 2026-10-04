@@ -14,6 +14,7 @@
   let mode = 'mouse';
   const mouse = { x: null, y: null };
   const joy = { x: 0, y: 0 };
+  window.__joy = joy;
 
   /* ---------- mouse (laptop) ---------- */
   window.addEventListener('pointermove', e => {
