@@ -1,44 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<title>Living Sticker · Snake</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>Living Sticker · Snake</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- Toggle button -->
+  <button id="modeToggle" class="mode-toggle">Play Game</button>
   <main class="stage">
 
-    <div class="sticker-wrap">
-      <svg id="sticker" viewBox="0 0 1254 1254" xmlns="http://www.w3.org/2000/svg" aria-label="LIVE-STICKER">
-        <defs>
-          <clipPath id="c1"><circle cx="396.5" cy="304.5" r="36.1"/></clipPath>
-          <clipPath id="c2"><circle cx="559.0" cy="321.6" r="34.1"/></clipPath>
-          <clipPath id="c3"><circle cx="725.5" cy="491.0" r="32.6"/></clipPath>
-          <clipPath id="c4"><circle cx="863.1" cy="441.5" r="33.5"/></clipPath>
-        </defs>
-        <image href="svg/sticker.png" width="1254" height="1254"/>
 
-        <circle class="rim" cx="396.5" cy="304.5" r="38.35"/>
-        <circle class="rim" cx="559.0" cy="321.6" r="36.35"/>
-        <circle class="rim" cx="725.5" cy="491.0" r="34.85"/>
-        <circle class="rim" cx="863.1" cy="441.5" r="35.75"/>
+    <div class="sticker-wrap">
+      <svg id="sticker" viewBox="0 0 1254 1254" xmlns="http://www.w3.org/2000/svg" aria-label="Eyes-On-Me">
+        <defs>
+          <clipPath id="c1">
+            <circle cx="396.5" cy="304.5" r="36.1" />
+          </clipPath>
+          <clipPath id="c2">
+            <circle cx="559.0" cy="321.6" r="34.1" />
+          </clipPath>
+          <clipPath id="c3">
+            <circle cx="725.5" cy="491.0" r="32.6" />
+          </clipPath>
+          <clipPath id="c4">
+            <circle cx="863.1" cy="441.5" r="33.5" />
+          </clipPath>
+        </defs>
+        <image href="svg/sticker.png" width="1254" height="1254" />
+
+        <circle class="rim" cx="396.5" cy="304.5" r="38.35" />
+        <circle class="rim" cx="559.0" cy="321.6" r="36.35" />
+        <circle class="rim" cx="725.5" cy="491.0" r="34.85" />
+        <circle class="rim" cx="863.1" cy="441.5" r="35.75" />
 
         <g class="eye" clip-path="url(#c1)" data-cx="396.5" data-cy="304.5" data-mx="15.1" data-my="7">
-          <circle class="white" cx="396.5" cy="304.5" r="36.1"/>
-          <g class="pupil"><circle r="19.5"/><circle class="shine" cx="-2" cy="-7" r="5.5"/></g>
+          <circle class="white" cx="396.5" cy="304.5" r="36.1" />
+          <g class="pupil">
+            <circle r="19.5" />
+            <circle class="shine" cx="-2" cy="-7" r="5.5" />
+          </g>
         </g>
         <g class="eye" clip-path="url(#c2)" data-cx="559.0" data-cy="321.6" data-mx="13.1" data-my="7">
-          <circle class="white" cx="559.0" cy="321.6" r="34.1"/>
-          <g class="pupil"><circle r="19.5"/><circle class="shine" cx="-2" cy="-7" r="5.5"/></g>
+          <circle class="white" cx="559.0" cy="321.6" r="34.1" />
+          <g class="pupil">
+            <circle r="19.5" />
+            <circle class="shine" cx="-2" cy="-7" r="5.5" />
+          </g>
         </g>
         <g class="eye" clip-path="url(#c3)" data-cx="725.5" data-cy="491.0" data-mx="11.6" data-my="6.4">
-          <circle class="white" cx="725.5" cy="491.0" r="32.6"/>
-          <g class="pupil"><circle r="19.5"/><circle class="shine" cx="-2" cy="-7" r="5.5"/></g>
+          <circle class="white" cx="725.5" cy="491.0" r="32.6" />
+          <g class="pupil">
+            <circle r="19.5" />
+            <circle class="shine" cx="-2" cy="-7" r="5.5" />
+          </g>
         </g>
         <g class="eye" clip-path="url(#c4)" data-cx="863.1" data-cy="441.5" data-mx="12.5" data-my="6.9">
-          <circle class="white" cx="863.1" cy="441.5" r="33.5"/>
-          <g class="pupil"><circle r="19.5"/><circle class="shine" cx="-2" cy="-7" r="5.5"/></g>
+          <circle class="white" cx="863.1" cy="441.5" r="33.5" />
+          <g class="pupil">
+            <circle r="19.5" />
+            <circle class="shine" cx="-2" cy="-7" r="5.5" />
+          </g>
         </g>
       </svg>
 
@@ -50,11 +76,14 @@
   </main>
 
   <div class="joy-wrap" id="joyWrap">
-    <div class="joy-base" id="joyBase"><div class="joy-knob" id="joyKnob"></div></div>
+    <div class="joy-base" id="joyBase">
+      <div class="joy-knob" id="joyKnob"></div>
+    </div>
     <span class="joy-label">Drag to steer the snake</span>
   </div>
 
   <script src="script.js"></script>
   <script src="snake.js"></script>
 </body>
+
 </html>
