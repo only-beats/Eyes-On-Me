@@ -36,39 +36,40 @@ body {
   padding: 3vh 4vw 0
 }
 
-#sticker {
+.sticker-wrap {
+  position: relative;
   width: min(92vw, 68vh, 640px);
-  height: auto;
-  max-height: 100%;
-  filter: drop-shadow(0 12px 18px rgba(90, 58, 30, .25))
+  aspect-ratio: 1 / 1;
 }
 
-.eye .white {
-  fill: #fff
+.sticker-wrap #sticker {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.rim {
-  fill: #fff;
-  stroke: #1a110d;
-  stroke-width: 4.5
+#game {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
 }
 
-.pupil circle {
-  fill: #140c0a
-}
-
-.pupil .shine {
-  fill: #fff
-}
+.eye .white { fill: #fff }
+.rim { fill: #fff; stroke: #1a110d; stroke-width: 4.5 }
+.pupil circle { fill: #140c0a }
+.pupil .shine { fill: #fff }
 
 .hint {
   font-size: clamp(14px, 2.2vh, 18px);
   opacity: .75
 }
 
-/* joystick: only on touch devices */
+/* joystick: visible by default, hidden on desktop */
 .joy-wrap {
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
@@ -84,6 +85,8 @@ body {
   border: 3px solid rgba(90, 58, 30, .35);
   box-shadow: inset 0 4px 12px rgba(90, 58, 30, .2);
   touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .joy-knob {
@@ -108,16 +111,17 @@ body {
   opacity: .7
 }
 
-@media (hover:none) and (pointer:coarse) {
+/* Hide joystick on desktop */
+@media (hover:hover) and (pointer:fine) {
   .joy-wrap {
-    display: flex
+    display: none;
   }
-
   .hint {
-    display: none
+    display: block;
   }
 }
 
+/* Landscape mode adjustments */
 @media (max-height:520px) and (orientation:landscape) {
   body {
     flex-direction: row
@@ -127,41 +131,11 @@ body {
     padding: 2vh 2vw
   }
 
-  #sticker {
-    width: min(60vw, 92vh)
+  .sticker-wrap {
+    width: min(60vw, 92vh);
   }
 
   .joy-wrap {
     padding: 0 4vw
-  }
-}
-
-.sticker-wrap {
-  position: relative;
-  width: min(92vw, 68vh, 640px);
-  aspect-ratio: 1 / 1;
-}
-
-.sticker-wrap #sticker {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-#game {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  /* joystick / sticker still get clicks */
-  z-index: 2;
-  /* above the sticker */
-}
-
-/* keep the landscape override working */
-@media (max-height:520px) and (orientation:landscape) {
-  .sticker-wrap {
-    width: min(60vw, 92vh);
   }
 }
