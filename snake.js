@@ -116,9 +116,15 @@
         const j = window.__joy;
         if (!j) return;
         if (Math.hypot(j.x, j.y) < 0.3) return;    // dead zone
+
+        // --- NEW FIX: Start the game on ANY joystick movement ---
+        if (!started && alive) started = true;
+        // -------------------------------------------------------
+
         let x = 0, y = 0;
         if (Math.abs(j.x) > Math.abs(j.y)) x = j.x > 0 ? 1 : -1;
         else y = j.y > 0 ? 1 : -1;
+
         if (x !== lastJoyDir.x || y !== lastJoyDir.y) {
             queueDir(x, y);
             lastJoyDir = { x, y };
@@ -177,7 +183,7 @@
         ctx.clearRect(0, 0, W, H);
         // --- DRAW OUTER LIMIT BORDER (WALL) ---
         const wallThickness = Math.min(sx, sy) * 0.09; // Scales with the grid size
-        ctx.strokeStyle = '#143143'; 
+        ctx.strokeStyle = '#143143';
         ctx.lineWidth = wallThickness;
         // Inset by half the thickness so the whole border stays on screen
         ctx.strokeRect(wallThickness / 2, wallThickness / 2, W - wallThickness, H - wallThickness);
@@ -261,8 +267,7 @@
 
     // ---------- restart ----------
     window.addEventListener('pointerdown', e => {
-        const base = document.getElementById('joyBase');
-        if (base && base.contains(e.target)) return;
+        // Removed the check that blocked the joystick, so tapping anywhere restarts
         if (!alive) reset();
     }, { passive: true });
 
