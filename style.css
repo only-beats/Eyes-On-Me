@@ -57,10 +57,23 @@ body {
   z-index: 2;
 }
 
-.eye .white { fill: #fff }
-.rim { fill: #fff; stroke: #1a110d; stroke-width: 4.5 }
-.pupil circle { fill: #140c0a }
-.pupil .shine { fill: #fff }
+.eye .white {
+  fill: #fff
+}
+
+.rim {
+  fill: #fff;
+  stroke: #1a110d;
+  stroke-width: 4.5
+}
+
+.pupil circle {
+  fill: #140c0a
+}
+
+.pupil .shine {
+  fill: #fff
+}
 
 .hint {
   font-size: clamp(14px, 2.2vh, 18px);
@@ -116,6 +129,7 @@ body {
   .joy-wrap {
     display: none;
   }
+
   .hint {
     display: block;
   }
@@ -138,4 +152,33 @@ body {
   .joy-wrap {
     padding: 0 4vw
   }
+}
+
+.mode-toggle {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 40px;
+  background: #143143;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mode-toggle:active {
+  transform: translateX(-50%) scale(.96);
+}
+
+.mode-toggle.game-on {
+  background: #e2625c;
+  /* red-ish when game is on */
 }
