@@ -1,7 +1,6 @@
 (() => {
   const clamp = (v, a = -1, b = 1) => Math.max(a, Math.min(b, v));
 
-  // eyes: horizontal range (data-mx) is bigger than vertical (data-my), like a human
   const eyes = [...document.querySelectorAll('.eye')].map(g => ({
     pupil: g.querySelector('.pupil'),
     white: g.querySelector('.white'),
@@ -31,6 +30,7 @@
 
   function moveKnob(e) {
     const r = base.getBoundingClientRect();
+    if (r.width === 0) return; // Prevent division by zero
     const max = (r.width - knob.offsetWidth) / 2;
     let dx = e.clientX - (r.left + r.width / 2);
     let dy = e.clientY - (r.top + r.height / 2);
@@ -40,18 +40,28 @@
     joy.x = dx / max; joy.y = dy / max;
     mode = 'joy';
   }
+
   base.addEventListener('pointerdown', e => {
+    e.preventDefault(); // Stop page scrolling
     dragging = true; base.setPointerCapture(e.pointerId);
     knob.classList.add('drag'); moveKnob(e);
   });
-  base.addEventListener('pointermove', e => { if (dragging) moveKnob(e); });
+
+  base.addEventListener('pointermove', e => { 
+    if (dragging) {
+      e.preventDefault(); // Stop page scrolling
+      moveKnob(e); 
+    }
+  });
+
   const release = () => {
     if (!dragging) return;
     dragging = false; knob.classList.remove('drag');
     knob.style.transform = 'translate(0,0)'; joy.x = 0; joy.y = 0;
   };
-  base.addEventListener('pointerup', release);
-  base.addEventListener('pointercancel', release);
+
+  base.addEventListener('pointerup', e => { e.preventDefault(); release(); });
+  base.addEventListener('pointercancel', e => { e.preventDefault(); release(); });
 
   /* ---------- animation loop ---------- */
   function frame() {
@@ -68,10 +78,9 @@
         tx = clamp(dx / (innerWidth * 0.3));
         ty = clamp(dy / (innerHeight * 0.3));
       }
-      // keep the pupil a perfect circle inside the eye: limit the move to an oval
       const len = Math.hypot(tx, ty);
       if (len > 1) { tx /= len; ty /= len; }
-      eye.x += (tx - eye.x) * 0.16;   // smooth, natural easing
+      eye.x += (tx - eye.x) * 0.16;
       eye.y += (ty - eye.y) * 0.16;
       const px = eye.cx + eye.x * eye.mx;
       const py = eye.cy + eye.y * eye.my;
